@@ -23,15 +23,12 @@ class DataReceiver {
                 Socket clientSocket = serverSocket.accept();
 
                 InputStream stream = clientSocket.getInputStream();
+                byte[] buffer = new byte[stream.available()];
+                initialStream.read(buffer);
 
-                    InputStream initialStream = new FileInputStream(
-                            new File("src/main/resources/sample.txt"));
-                    byte[] buffer = new byte[initialStream.available()];
-                    initialStream.read(buffer);
-
-                    File targetFile = new File("src/main/resources/targetFile.tmp");
-                    OutputStream outStream = new FileOutputStream(targetFile);
-                    outStream.write(buffer);
+                File targetFile = new File("src/main/resources/xml.tmp");
+                OutputStream outStream = new FileOutputStream(targetFile);
+                OutStream.write(buffer);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -50,15 +47,16 @@ class DataReceiver {
 
 public class Main {
     public static void main(String args[]) {
-        DataReceiver dataReceiver = new DataReceiver(args[0]);
-        Thread receiverThread;
-
         if (args.length <= 0) {
             System.err.println("Please specify a correct portnumber, and nothing else.");
             System.exit(1);
         }
 
-
-
+        try {
+            DataReceiver dataReceiver = new DataReceiver(args[0]);
+            dataReceiver.start();
+        } catch {
+            System.out.println(e.getMessage());
+        }
     }
 }
