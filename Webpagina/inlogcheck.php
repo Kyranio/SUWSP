@@ -1,6 +1,5 @@
 <html> 
 <head> 
-<title>registratiecheckbuttons</title>
 </head>
 <body>
 <link rel="stylesheet" type="text/css" href="inlogschermstyle.css">
@@ -15,7 +14,7 @@ include 'Dataconnectie.php';
 //de query voor het ophalen van de tabel van wachtwoorden
 $query = "
 SELECT * 
-FROM klant
+FROM users
 WHERE email = '$email'";
 
 $result = mysqli_query($db, $query);
@@ -23,15 +22,15 @@ $result = mysqli_query($db, $query);
 //wachtwoord ophalen uit de database
 while($row = mysqli_fetch_assoc($result)){
 	//check of het wachtwoord uit de database die verbonden is aan het opgegeven emailadres overeen komt met het opgegeven wachtwoord
-	if($wachtwoordinlog == $row["wachtwoord"]){
+	if($wachtwoordinlog == $row["password"]){
 		include "inlogsucces.php";
 		session_start();
 	}
 	else{
 	include "inlogfail.php";
 	}
-	$_SESSION['klant_id'] = $row['klant_id'];
-	$_SESSION['rol'] = $row['rol'];
+	$_SESSION['staff_number'] = $row['staff_number'];
+	$_SESSION['role'] = $row['role'];
 }
 ?>
 </body>
