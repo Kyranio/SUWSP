@@ -1,10 +1,11 @@
+
 <!DOCTYPE html> 
 <html> 
 <head> 
 <title>Inlogscherm</title> 
 <link rel="stylesheet" type="text/css" href="inlogschermstyle.css">
 <img src="logo-agrididon.png" alt="logo" style="width: 10%;">
-<div ID="Tableinlog"><H2>Login</H2>
+<div ID="Tableinlog"><H2>Agri Didon weather monitoring system</H2>
 </head> 
 <body>
 <!--<fieldset>-->
@@ -19,7 +20,12 @@
 <td>Password:</td>
 <td><input type="password" name="wachtwoordinlog" required></td>
 <tr>
-<td><input id="buttoninlog" type ="submit" name="login" value="Log in"></td>
+<td><input id="buttoninlog" type ="submit" name="login" value="Login"></td>
+</form>
+
+<form action="registratiescherm.php">
+
+<td><input id="buttoninlog" type="submit" Value="Register"></td>
 
 </form>
 </table>

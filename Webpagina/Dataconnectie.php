@@ -1,9 +1,9 @@
 <?php
-// Database connectie met localhost
+// Database connectie met 51.144.163.82
 $dbhost = "localhost"; 
-$dbuser = "root"; 
-$dbpass = "";
-$dbname = ""; 
+$dbuser = "Tim"; 
+$dbpass = "TimsWachtwoord1!";
+$dbname = "agrididon"; 
 $db = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname); 
 
 // Test of de verbinding werkt! 

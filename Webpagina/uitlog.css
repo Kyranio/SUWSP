@@ -1,0 +1,11 @@
+body {
+	font-family: Arial, serif;
+	background-color: #EFEFEF;
+}
+h1 {
+	color: #FF3B3F;
+}
+#button{
+	background-color: #FF3B3F;
+	border: none;
+}
