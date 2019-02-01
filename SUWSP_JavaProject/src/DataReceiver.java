@@ -5,6 +5,7 @@ import java.net.Socket;
 public class DataReceiver implements Runnable {
     private Thread t;
     public int portNumber = 0;
+    DataImporter importer;
 
     public DataReceiver(String port) {
         if (port.length() == 0) {
@@ -22,16 +23,18 @@ public class DataReceiver implements Runnable {
             Socket clientSocket = serverSocket.accept();
             while(serverSocket.isBound()) {
                 InputStream stream = clientSocket.getInputStream();
-                byte[] buffer = new byte[stream.available()];
+                byte[] buffer = stream.readAllBytes();
                 stream.read(buffer);
                 System.out.println(stream.available());
 
                 File targetFile = getFile();
                 OutputStream outStream = new FileOutputStream(targetFile);
                 outStream.write(buffer);
-                outStream.flush();
 
-                System.out.println("end");
+                if (importer == null || importer.working == false) {
+                    importer = new DataImporter(getFile());
+                    importer.start("DataImporter");
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
