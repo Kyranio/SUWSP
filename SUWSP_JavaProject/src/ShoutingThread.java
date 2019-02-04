@@ -16,7 +16,7 @@ class Worker implements Runnable
 		try {
 			String s;
 			System.err.println("Receiver thread " + threadID + " started.");
-			FileWriter fileWriter = new FileWriter("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data\\Ouput"+threadID);
+			FileWriter fileWriter = new FileWriter("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data\\Ouput"+threadID+".xml");
 
 			BufferedReader bin = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			while ((s = bin.readLine()) != null) {
