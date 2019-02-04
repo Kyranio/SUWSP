@@ -15,19 +15,26 @@ class Worker implements Runnable
 	public void run() {
 		try {
 			String s;
+			int h = 0; 
 			System.err.println("Receiver thread " + threadID + " started.");
-			FileWriter fileWriter = new FileWriter("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data\\Ouput"+threadID+".xml");
+			FileWriter fileWriter = new FileWriter("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data\\Ouput"+threadID+".xml",false);
 
 			BufferedReader bin = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			while ((s = bin.readLine()) != null) {
-	            System.out.println(s);
+				if(h<=162) { 
 			    fileWriter.write(s);
+			    System.out.println(s);
+			    System.out.println(h++);
+				} 
+				else { 
+					fileWriter.close();
+//					connection.close();
+				}
 	        }
-			
 			// now close the socket connection
 			connection.close();
 		    fileWriter.close();
-			System.err.println("Connection closed: workerthread ending");
+			System.err.println("Connection closed: workerthread "+threadID+" ending");
 		}
 		catch (IOException ioe) { }
 		//catch (InterruptedException ie) {}
