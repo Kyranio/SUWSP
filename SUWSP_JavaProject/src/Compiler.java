@@ -8,11 +8,11 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.io.FileWriter;
 
-public class Comiler {
+public class Compiler {
 
-public static void main(String argv[]) {
+public static void CompileData(String argv[], File fileToCompile) {
     try {
-	File fXmlFile = new File("E:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Generator\\OutputTest.xml");
+	File fXmlFile = fileToCompile; //new File("E:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Generator\\OutputTest.xml");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(fXmlFile);
