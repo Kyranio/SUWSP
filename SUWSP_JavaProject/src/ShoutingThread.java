@@ -1,5 +1,3 @@
-
-
 import java.net.*;
 import java.io.*;
 //import java.util.concurrent.*;
@@ -7,20 +5,18 @@ import java.io.*;
 class Worker implements Runnable
 {
 	private Socket connection;
+	public int threadID;
 
-	public Worker(Socket connection) {
+	public Worker(Socket connection, int threadid ) {
 		this.connection = connection;
+		this.threadID = threadid;
 	}
 
 	public void run() {
 		try {
 			String s;
-			System.err.println("New worker thread started");
-			
-			//lets check if we already accepted maximum number of connections
-			ShoutingMTServer.mijnSemafoor.probeer();
-			
-			FileWriter fileWriter = new FileWriter("E:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Generator\\OutputTest.xml");
+			System.err.println("Receiver thread " + threadID + " started.");
+			FileWriter fileWriter = new FileWriter("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data\\Ouput"+threadID);
 
 			BufferedReader bin = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			while ((s = bin.readLine()) != null) {
@@ -32,10 +28,8 @@ class Worker implements Runnable
 			connection.close();
 		    fileWriter.close();
 			System.err.println("Connection closed: workerthread ending");
-			// upping the semaphore.. since the connnection is gone....
-			ShoutingMTServer.mijnSemafoor.verhoog();
 		}
 		catch (IOException ioe) { }
-		catch (InterruptedException ie) {}
+		//catch (InterruptedException ie) {}
 	}
 }

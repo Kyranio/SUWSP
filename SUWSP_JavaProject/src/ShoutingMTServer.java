@@ -6,9 +6,10 @@ public class ShoutingMTServer {
 	private static final int maxnrofConnections=4;
 	public static TelSemafoor mijnSemafoor = new TelSemafoor(maxnrofConnections);
 	
-	
+ 
 	public static void main(String[] args) {
 		Socket connection;
+		int ConnectionID = 0;
 		try {
 			ServerSocket server = new ServerSocket(PORT);
 			System.err.println("MT Server started..bring on the load, to a maximum of: " + maxnrofConnections);
@@ -16,7 +17,7 @@ public class ShoutingMTServer {
 			while (true) {
 				connection = server.accept();		
 				System.err.println("New connection accepted..handing it over to worker thread");
-				Thread worker = new Thread(new Worker(connection));
+				Thread worker = new Thread(new Worker(connection, ++ConnectionID));
 				worker.start();
 			}
 		}

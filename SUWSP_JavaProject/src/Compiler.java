@@ -8,18 +8,18 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.io.FileWriter;
 
-public class Comiler {
+public class Compiler{
 
-public static void main(String argv[]) {
+public Compiler(int ThreadNummer) {
     try {
-	File fXmlFile = new File("E:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Generator\\OutputTest.xml");
+	File fXmlFile = new File("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(fXmlFile);
 	doc.getDocumentElement().normalize();	
 	
 	NodeList nList = doc.getElementsByTagName("MEASUREMENT");
-	FileWriter fileWriter = new FileWriter("E:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Generator\\outputCompiled.txt");
+	FileWriter fileWriter = new FileWriter("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Generator\\outputCompiled.txt");
 	
 	for (int temp = 0; temp < nList.getLength(); temp++) {
 		Node nNode = nList.item(temp);
