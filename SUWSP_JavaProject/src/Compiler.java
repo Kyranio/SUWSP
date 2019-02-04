@@ -12,7 +12,8 @@ public class Compiler{
 
 public Compiler(int ThreadNummer) {
     try {
-	File fXmlFile = new File("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data");
+    int DocumentID = 1; 
+	File fXmlFile = new File("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data\\Ouput"+DocumentID);
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(fXmlFile);
@@ -20,6 +21,7 @@ public Compiler(int ThreadNummer) {
 	
 	NodeList nList = doc.getElementsByTagName("MEASUREMENT");
 	FileWriter fileWriter = new FileWriter("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Generator\\outputCompiled.txt");
+	
 	
 	for (int temp = 0; temp < nList.getLength(); temp++) {
 		Node nNode = nList.item(temp);
