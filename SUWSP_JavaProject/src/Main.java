@@ -8,9 +8,6 @@ public class Main {
         try {
             DataReceiver dataReceiver = new DataReceiver(args[0]);
             dataReceiver.start("DataReceiver");
-
-            //DataImporter dataImporter = new DataImporter(dataReceiver.getFile());
-            //dataImporter.start("DataImporter");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

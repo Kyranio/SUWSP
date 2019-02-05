@@ -14,18 +14,18 @@ import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import static com.sun.org.apache.xml.internal.serializer.Method.XML;
-
 public class DataImporter implements Runnable {
     private Thread importer;
     public File importFile;
 
+    boolean working;
 
     public void run() {
+        working = true;
         try {
             InputSource iSource = new InputSource();
             DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            iSource.setCharacterStream(new StringReader(XML));
+            iSource.setCharacterStream(new StringReader("nothing"));
 
             try {
                 Document document = dBuilder.parse(iSource);
@@ -41,6 +41,8 @@ public class DataImporter implements Runnable {
                     for (String tag : tags) {
                         measurementData.put(tag, measurement.getElementsByTagName(tag).item(0).getTextContent());
                     }
+
+                    //Corrector.Correct();
 
                     StringBuilder tagStringBuilder = new StringBuilder();
                     tagStringBuilder.append("\n(");
@@ -69,9 +71,21 @@ public class DataImporter implements Runnable {
             System.out.println(parserE.getMessage());
             parserE.printStackTrace();
         }
+        working = false;
     }
 
     public DataImporter(File fileToImport) {
         importFile = fileToImport;
+    }
+
+    private String threadName;
+
+    public void start(String name) {
+        threadName = name;
+        System.out.println("Starting DataImporter");
+        if (importer == null) {
+            importer = new Thread (this, threadName);
+            importer.start ();
+        }
     }
 }
