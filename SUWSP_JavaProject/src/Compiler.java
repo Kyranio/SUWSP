@@ -53,9 +53,10 @@ public class Compiler{
 	    		            fileWriter.write(Waarde);
 	    		        }
 	    		    }
-	    		    fileWriter.write("\n");
+	    		    fileWriter.write("_");
 	    		}
 	    	}
+	    	child.delete(); 
 	    }
 	  } 
 	fileWriter.close();

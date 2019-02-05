@@ -23,8 +23,7 @@ class Worker implements Runnable
 			while ((s = bin.readLine()) != null) {
 				if(h<=162) { 
 			    fileWriter.write(s);
-			    System.out.println(s);
-			    System.out.println(h++);
+			    h++; 
 				} 
 				else { 
 					fileWriter.close();
