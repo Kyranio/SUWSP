@@ -2,12 +2,12 @@ import java.net.*;
 import java.io.*;
 //import java.util.concurrent.*;
 
-class Worker implements Runnable
+class DataReceiveHandler implements Runnable
 {
 	private Socket connection;
 	public int threadID;
 
-	public Worker(Socket connection, int threadid ) {
+	public DataReceiveHandler(Socket connection, int threadid ) {
 		this.connection = connection;
 		this.threadID = threadid;
 	}
@@ -17,7 +17,7 @@ class Worker implements Runnable
 			String s;
 			int h = 0; 
 			System.err.println("Receiver thread " + threadID + " started.");
-			FileWriter fileWriter = new FileWriter("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data\\Ouput"+threadID+".xml",false);
+			FileWriter fileWriter = new FileWriter(System.getProperty("user.dir") + "/ReceiveDumpFiles/" +threadID+".xml", false);
 
 			BufferedReader bin = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			while ((s = bin.readLine()) != null) {
@@ -30,10 +30,10 @@ class Worker implements Runnable
 //					connection.close();
 				}
 	        }
-			// now close the socket connection
 			connection.close();
 		    fileWriter.close();
-			System.err.println("Connection closed: workerthread "+threadID+" ending");
+
+			System.out.println("Connection closed: workerthread "+threadID+" ending");
 		}
 		catch (IOException ioe) { }
 		//catch (InterruptedException ie) {}
