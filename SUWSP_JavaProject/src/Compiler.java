@@ -21,16 +21,13 @@ public class Compiler{
 	  File[] directoryListing = dir.listFiles();
 	  if (directoryListing != null) {
 	    for (File child : directoryListing) {
-	      // Do something with child
-	    	//File fXmlFile = new File("D:\\OneDrive\\OneDrive - Hanzehogeschool Groningen\\Documenten\\------------- Jaar 2 -------------\\Project\\Data\\Ouput1");
-	    	
+	     
 	    	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	    	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	    	Document doc = dBuilder.parse(child);
 	    	doc.getDocumentElement().normalize();
 	    	NodeList nList = doc.getElementsByTagName("MEASUREMENT");
 	    	
-	    	System.out.println(child);
 	    	for (int temp = 0; temp < nList.getLength(); temp++) {
 	    		Node nNode = nList.item(temp);
 	    		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -55,18 +52,14 @@ public class Compiler{
 	    		            fileWriter.write(Waarde);
 	    		        }
 	    		    }
-	    		    fileWriter.write("\n");
-	    		    System.out.println("Station data toegevoegd aan de Compiled File");
+	    		    fileWriter.write("_");
 	    		}
 	    	}
+	    	child.delete(); 
 	    }
-	  } else {
-	    // Handle the case where dir is not really a directory.
-	    // Checking dir.isDirectory() above would not be sufficient
-	    // to avoid race conditions with another process that deletes
-	    // directories.
-	  }
+	  } 
 	fileWriter.close();
+	System.out.println("Compiling done!");
     } catch (Exception e) {
     	e.printStackTrace();
     }
