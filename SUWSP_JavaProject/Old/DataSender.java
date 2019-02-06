@@ -5,7 +5,6 @@ import java.net.Socket;
 public class DataSender implements Runnable {
     private Thread t;
     public int portNumber = 0;
-    DataImporter importer;
     File transferFile;
 
     public DataSender(String port, File fileToSend) {
