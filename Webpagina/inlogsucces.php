@@ -8,7 +8,7 @@
 <table>
 <form>
 <h2>Your Login was successful</h2>
-<input type="submit" formaction="index.php" ID="button" value="Home">
+<input type="submit" formaction="Homepage.php" ID="button" value="Home">
 </form>
 </table>
 </body> 

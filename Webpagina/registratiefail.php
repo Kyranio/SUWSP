@@ -8,11 +8,10 @@
 <table>
 <link rel="stylesheet" type="text/css" href="registratiecheckbuttonsstyle.css">
 <tr> 
-<td><input ID="failbutton" type= "button" value ="Something went wrong, please try again." formaction="inlogscherm.php">
+<td><input ID="failbutton" type= "submit" value ="Something went wrong, please try again." formaction="registratiescherm.php">
 </td>
-<td><input ID="failbutton" type="button" value="Cancel" formaction="inlogscherm.php"></td>
+<td><input ID="failbutton" type="submit" value="Cancel" formaction="index.php"></td>
 </tr>
-
 </table>
 </form> 
 </body> 
